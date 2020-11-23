@@ -29,6 +29,22 @@ app.use(function (req, res, next) {
 	next(createError(404));
 });
 
+const mongoose = require("mongoose");
+
+const Dishes = require("./models/dishes");
+
+const url = "mongodb://localhost:27017/conFusion";
+const connect = mongoose.connect(url);
+
+connect.then(
+	(db) => {
+		console.log("Connected correctly to server");
+	},
+	(err) => {
+		console.log(err);
+	}
+);
+
 // error handler
 app.use(function (err, req, res, next) {
 	// set locals, only providing error in development
